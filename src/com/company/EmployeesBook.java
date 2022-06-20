@@ -30,7 +30,7 @@ public class EmployeesBook {
         } else {
             Employee newEmployee = new Employee(name, middlename, surname, department, salary); // создаем экземпляр класса Employee
               for (int i = 0; i < size; i++ ){
-                 if (equalsS(newEmployee,employees[i])) {
+                 if ( employees[i].equals(newEmployee) ) {
                     variableAvailabilityTheSameObject = 1;
                     System.out.println ("Под номером " + i + " работник, ранее, уже внесен в базу данных !");
                 }
@@ -40,33 +40,26 @@ public class EmployeesBook {
                 quantityElementsCreatedInTheArray = size;}
         }
     }
-    // вывод одного экземпляра класса Employees в консоль со всеми полями
+// вывод одного экземпляра класса Employees в консоль со всеми полями
     public  void printOneEmployees (Employee employees){
-
-         //   System.out.print("   " + employees.getId()+ " " + employees.getName() + " " + employees.getMiddlename() + " " + employees.getSurname() );
-         //   System.out.println(" отдел -" +  employees.getDepartment() + " " + employees.getSalary() );
-
         System.out.println (employees.toString()); // обращаемся к переопределенному классу toString
     }
-
+// выводим ВЫВОДИМ СПИСОК ДАННЫХ О ВСЕХ СОТРУДНИКАХ
     public  void printAllEmployees () {
-        System.out.println("ВЫВОДИМ СПИСОК ДАННЫХ О ВСЕХ СОТРУДНИКАХ ");
         for (int i = 0; i < quantityElementsCreatedInTheArray; i++) {
             printOneEmployees (employees[i]);
         }
     }
-
+// выводим ВЫВОДИМ СУММУ ЗАРПЛАТ ВСЕХ СОТРУДНИКОВ
     public  void  sumAllSalariesEmployees (){
-        System.out.println("   ВЫВОДИМ СУММУ ЗАРПЛАТ ВСЕХ СОТРУДНИКОВ ");
         int sumAllSalaries = 0;
         for (int i = 0; i < quantityElementsCreatedInTheArray; i++){
             sumAllSalaries += employees[i].getSalary();
         }
         System.out.println("Сумма зарплат всех сотрудников = " + sumAllSalaries);
     }
-
+// вывод ВЫВОДИМ СРЕДНЮЮ ЗАРПЛАТУ ВСЕХ СОТРУДНИКОВ
     public void  averageAllSalariesEmployees () {
-        System.out.println("   ВЫВОДИМ СРЕДНЮЮ ЗАРПЛАТУ ВСЕХ СОТРУДНИКОВ ");
         int summa = 0;
         for (int i = 0; i < quantityElementsCreatedInTheArray; i++) {
             summa += employees[i].getSalary();
@@ -76,9 +69,8 @@ public class EmployeesBook {
         System.out.println("Средняя зарплата всех сотрудников = " + averageAllSalaries);
     }
 
-
+// вывод СОТРУДНИКОМ c минимальной зарплатой является
     public void  minAllSalariesEmployees(){
-        System.out.println("СОТРУДНИКОМ c минимальной зарплатой является ");
         int sumAllSalaries = employees[0].getSalary();
         int minSalaryIndex = 0;
         for (int i = 1; i < quantityElementsCreatedInTheArray; i++){
@@ -89,9 +81,8 @@ public class EmployeesBook {
         }
         printOneEmployees(employees[minSalaryIndex]);
     }
-
+// вывод СОТРУДНИКОМ c максимальной зарплатой является
     public void  maxAllSalariesEmployees(){
-        System.out.println("СОТРУДНИКОМ c максимальной зарплатой является ");
         int sumAllSalaries = employees[0].getSalary();
         int maxSalaryIndex = 0;
         for (int i = 1; i < quantityElementsCreatedInTheArray; i++){
@@ -102,14 +93,6 @@ public class EmployeesBook {
         }
         printOneEmployees(employees[maxSalaryIndex]);
     }
-    /*
-    public static void printAllsurnamesEmployees (Employee[] employees) {
-        System.out.println("ВЫВОДИМ СПИСОК Имен Отчеств и Фамилий ВСЕХ СОТРУДНИКОВ ");
-        for (int i = 0; i < employees.length; i++) {
-            System.out.println("   " + employees[i].getName() + " " + employees[i].getMiddlename() + " " + employees[i].getSurname());
-        }
-    }
-    */
     // ввод числа с клавиатуры в программу
     public static int inputNumbersInt (){
         Scanner range = new Scanner(System.in);
@@ -118,9 +101,9 @@ public class EmployeesBook {
         { return range.nextInt();
         } else { return -101; }
     }
-
+//Введите процент со знаком + или -, на который хотите увеличить или уменьшить заработную плату заработную плату ВСЕХ сотрудников
     public void  indexingAllSalariesEmployees (){
-        System.out.println("Введите процент со знаком + или -, на который хотите увеличить или уменьшить заработную плату ВСЕХ сотрудников ");
+
         int k = 0;
         do {
             System.out.print("      = ");
@@ -132,19 +115,11 @@ public class EmployeesBook {
 
         }
     }
-
+//ВЫВОДИМ СПИСОК Имен Отчеств и Фамилий ВСЕХ СОТРУДНИКОВ
     public void printAllsurnamesEmployees(EmployeesBook employeesBook) {
-        System.out.println("ВЫВОДИМ СПИСОК Имен Отчеств и Фамилий ВСЕХ СОТРУДНИКОВ ");
         for (int i = 0; i < quantityElementsCreatedInTheArray; i++) {
             System.out.println("   " + employees[i].getName() + " " + employees[i].getMiddlename() + " " + employees[i].getSurname());
         }
     }
-
-
-    public boolean equalsS(Employee objectOne,Employee objectTwo ) {
-        Employee employees = objectTwo;
-        return  employees.equals(objectOne);
-    }
-
 }
 
