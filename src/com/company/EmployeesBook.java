@@ -24,21 +24,19 @@ public class EmployeesBook {
 
     // метод передачи экземплятров класса Employee в массив экземпляра класса EmployeesBook
     public void addEmployee(String name, String middlename, String surname, int department, int salary) {
-         int variableAvailabilityTheSameObject = -1;
-        if (size >= numberOfCellsInTheArray) {                                      // если массив меньше равен 0 то
+       if (size >= numberOfCellsInTheArray) {                                      // если массив меньше равен 0 то
             System.out.println("Трудовая книжка заполнена. Добавление нового сотрудника недоступно.");
-        } else {
+            return; }
+
             Employee newEmployee = new Employee(name, middlename, surname, department, salary); // создаем экземпляр класса Employee
               for (int i = 0; i < size; i++ ){
                  if ( employees[i].equals(newEmployee) ) {
-                    variableAvailabilityTheSameObject = 1;
                     System.out.println ("Под номером " + i + " работник, ранее, уже внесен в базу данных !");
-                }
+                    return; }
               }
-            if (variableAvailabilityTheSameObject < 0 ){
-              employees [size++] = newEmployee;           // передаем экземпляр класса Employee в ячейку массива под индексом size
-                quantityElementsCreatedInTheArray = size;}
-        }
+                employees [size++] = newEmployee;         // передаем экземпляр класса Employee в ячейку массива под индексом size
+                quantityElementsCreatedInTheArray = size; // максимальное значение заполненной ячейки массива экземпляров класса Employee
+
     }
 // вывод одного экземпляра класса Employees в консоль со всеми полями
     public  void printOneEmployees (Employee employees){
@@ -69,7 +67,7 @@ public class EmployeesBook {
         System.out.println("Средняя зарплата всех сотрудников = " + averageAllSalaries);
     }
 
-// вывод СОТРУДНИКОМ c минимальной зарплатой является
+// вывод СОТРУДНИКА c минимальной зарплатой является
     public void  minAllSalariesEmployees(){
         int sumAllSalaries = employees[0].getSalary();
         int minSalaryIndex = 0;
@@ -81,7 +79,7 @@ public class EmployeesBook {
         }
         printOneEmployees(employees[minSalaryIndex]);
     }
-// вывод СОТРУДНИКОМ c максимальной зарплатой является
+// вывод СОТРУДНИКА c максимальной зарплатой является
     public void  maxAllSalariesEmployees(){
         int sumAllSalaries = employees[0].getSalary();
         int maxSalaryIndex = 0;
@@ -103,10 +101,9 @@ public class EmployeesBook {
     }
 //Введите процент со знаком + или -, на который хотите увеличить или уменьшить заработную плату заработную плату ВСЕХ сотрудников
     public void  indexingAllSalariesEmployees (){
-
         int k = 0;
         do {
-            System.out.print("      = ");
+            System.out.print(" введите число после знака -> ");
             k = inputNumbersInt();
         } while ( k < -100 || k > 100 );
         for (int i = 0; i < employees.length; i++){
@@ -120,6 +117,27 @@ public class EmployeesBook {
         for (int i = 0; i < quantityElementsCreatedInTheArray; i++) {
             System.out.println("   " + employees[i].getName() + " " + employees[i].getMiddlename() + " " + employees[i].getSurname());
         }
+    }
+//Введите число и метод выведет всех сотрудников у кого зарпалат выше или ниже
+     public void   comparisonAllSalariesEmployees (){
+        int k = 0;
+         System.out.println("Введите число и программа выведет всех СОТРУДНИКОВ  у кого зарплата ВЫШЕ и НИЖЕ этого числа ");
+        do {
+            System.out.print(" введите число после знака -> ");
+            k = inputNumbersInt();
+        } while ( k < -0 || k > 1000000 );
+         System.out.println("Выводим сотрудников у кого заплата ВЫШЕ : ");
+        for (int i = 0; i < employees.length; i++){
+           if  ( employees[i].getSalary() > k ){
+            printOneEmployees (employees[i]);}
+        }
+         System.out.println();
+         System.out.println("Выводим сотрудников у кого заплата НИЖЕ : ");
+         for (int i = 0; i < employees.length; i++){
+             if  ( employees[i].getSalary() < k ){
+                 printOneEmployees (employees[i]);}
+         }
+         System.out.println();
     }
 }
 
